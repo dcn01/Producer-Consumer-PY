@@ -1,0 +1,34 @@
+********************************  Tema 1 - ASC  *******************************
+Dinoiu Damian *****************************************************************
+336 CA ************************************************************************
+*******************************************************************************
+
+1) Marketplace.py
+	- se lucreaza in principiu cu 3 dictionare
+		1)products : fiecare produs reprezinta o cheie in dictionar iar
+		  			 valoarea este reprezentata de o lista de producatori
+		2)carts :	este format din asocierea id - continut unde continutul 
+					este format dintr-o lista de perechi [product - producer]
+		3)producer : este un dictionar ce mapeaza numele producatorilor la un
+					 index
+	- elemente de sincronizare:
+		1) producer_sem: un semafor binar folosit pentru contorizarea 
+						 producatorilor
+		2) cart_sem : un semafor binar folosit pentru contorizarea cart-urilor
+		3) in rest se folosesc dictionare si liste ce sunt Thread safe :)
+
+2) producer.py
+	- in momentul construiri unui producer se apeleaza register_producer()
+	  pentru a ii putea oferi un id unic
+	- primeste o lista de produse prin care itereaza la infinit producand 
+	  item-ul curent, daca a tins limita superioare de produse asteapta si 
+	  incearca din nou, iar dupa fiecare produs publicat asteapta un timp 
+	  specific fiecarui produs
+
+3) consumer.py 
+	- pentru fiecare lista de produse se asociaza un nou cart id prin 
+	  apelul metodei new_cart(), si se incearca cautarea produselor,
+	  in caz negativ se astepata si se reincearca; in momentul in care
+	  o lista este terminata se publica lista de cumparaturi.
+
+										
